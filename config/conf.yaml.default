@@ -1,0 +1,218 @@
+---
+# Configuration File for the 'fantasAi' fantasy football optimizer
+
+# Dynaconf Default Environment
+default:
+
+  PATHS:
+    ROOT_FOLDER:
+      "/home/tiziano/workspaces/fantasAi_football/data/"
+    INPUT:
+      FOLDER: "dcereijo-player-scores/"
+      APPEARANCES: "appearances.csv"
+      CLUBS: "clubs.csv"
+      COMPETITIONS: "competitions.csv"
+      GAMES: "games.csv"
+      INTERNATIONAL_COMPETITIONS_STATS: "international_competititions.csv"
+      PLAYER_VALUATIONS: "player_valuations.csv"
+      PLAYERS: "players.csv"
+
+  # All the features appearing in the data creation process with the relative name in the dataframes.
+  FEATURES:
+    # Unique ID for the product
+    PLAYER: "player_id"
+    # Player club
+    CLUB: 'club_id'
+    # Player name
+    NAME: 'name'
+    # Player "pretty" name
+    PRETTY_NAME: 'pretty_name'
+    # Player countr
+    COUNTRY: 'country_of_citizenship'
+    # Player date of birth
+    DATE_OF_BIRTH: 'date_of_birth'
+    # Player position
+    POSITION: 'position'
+    # Player sub-position
+    SUB_POSITION: 'sub_position'
+    # Player preferred foot
+    FOOT: 'foot'
+    # Player height
+    HEIGHT: 'height_in_cm'
+    # A game played
+    GAME: 'game_id'
+    # An appearance in a game
+    APPEARANCE: 'appearance_id'
+    # The competition
+    COMPETITION: 'competition_id'
+    # Number of goals
+    GOALS: 'goals'
+    # Number of assist
+    ASSIST: 'assists'
+    # Number of minute played
+    MINUTES_PLAYED: 'minutes_played'
+    # Number of yellow cards
+    YELLOW_CARDS: 'yellow_cards'
+    # Number of red cards
+    RED_CARDS: 'red_cards'
+    # Name of the club
+    CLUB_NAME: 'name'
+    # Pretty name of the club
+    CLUB_PRETTY_NAME: 'pretty_name'
+    # Domestic competition of a club
+    DOMESTIC_COMPETITION: 'domestic_competition_id'
+    # Number of seats in club stadium
+    STAIUM_SEATS: 'stadium_seats'
+    # Name of the competition (e.g., bundesliga)
+    COMPETITION_NAME: 'name'
+    # Type of the competition (e.g., domestic_cup)
+    COMPETITION_TYPE: 'type'
+    # Country of the competition
+    COMPETITION_COUNTRY: 'country_id'
+    # Name of the country of the competition
+    COMPETITION_COUNTRY_NAME: 'country_name'
+    # Domesti league of the country of the competition
+    DOMESTIC_LEAGUE : 'domestic_league_code'
+    # Season of a game (e.g., 2012)
+    SEASON: 'season'
+    # Roung of a game (e.g., 38. Matchday)
+    ROUND: 'round'
+    # Home club of a game
+    HOME_CLUB: 'home_club_id'
+    # Away club of a game
+    AWAY_CLUB: 'away_club_id'
+    # Number of home club of a game
+    HOME_GOALS: 'home_club_goals'
+    # Number of home club of a game
+    AWAY_GOALS: 'away_club_goals'
+    # A date 
+    DATE: 'date'
+    # A player market value
+    MARKET_VALUE: 'market_value'
+
+    # Data types for each feature
+    DTYPES:
+      PLAYER: str
+      CLUB: str
+      NAME: str
+      PRETTY_NAME: str
+      COUNTRY: str
+      DATE_OF_BIRTH: datetime64[ns]
+      POSITION: str
+      SUB_POSITION: str
+      FOOT: str
+      HEIGHT: float
+      GAME: str
+      APPEARANCE: str
+      COMPETITION: str
+      GOALS: int
+      ASSIST: int
+      MINUTES_PLAYED: int
+      YELLOW_CARDS: int
+      RED_CARDS: int
+      CLUB_NAME: str
+      CLUB_PRETTY_NAME: str
+      DOMESTIC_COMPETITION: str
+      STAIUM_SEATS: int
+      COMPETITION_NAME: str
+      COMPETITION_TYPE: str
+      COMPETITION_COUNTRY: str
+      COMPETITION_COUNTRY_NAME: str
+      DOMESTIC_LEAGUE: str
+      SEASON: int
+      ROUND: str
+      HOME_CLUB: str
+      AWAY_CLUB: str
+      HOME_GOALS: int
+      AWAY_GOALS: int
+      DATE: datetime64[ns]
+      MARKET_VALUE: float
+
+  PLAYERS:
+    COLS:
+      PLAYER: 'player_id' 
+      CLUB: 'current_club_id' 
+      NAME: 'name'
+      PRETTY_NAME: 'pretty_name'
+      COUNTRY: 'country_of_citizenship'
+      DATE_OF_BIRTH: 'date_of_birth'
+      POSITION: 'position' 
+      SUB_POSITION: 'sub_position' 
+      FOOT: 'foot' 
+      HEIGHT: 'height_in_cm'
+    KEY:
+      - PLAYER
+  
+  APPEARANCES:
+    COLS:
+      PLAYER: 'player_id'
+      GAME: 'game_id'
+      COMPETITION: 'competition_id'
+      CLUB: 'player_club_id'
+      GOALS: 'goals'
+      ASSIST: 'assists'
+      MINUTES_PLAYED: 'minutes_played'
+      YELLOW_CARDS: 'yellow_cards'
+      RED_CARDS: 'red_cards'
+    KEY:
+      - PLAYER
+      - GAME
+
+  GAMES:
+    COLS:
+      GAME: 'game_id'
+      COMPETITION: 'competition_code'
+      SEASON: 'season'
+      ROUND: 'round'
+      DATE: 'date'
+      HOME_CLUB: 'home_club_id'
+      AWAY_CLUB: 'away_club_id'
+      HOME_GOALS: 'home_club_goals'
+      AWAY_GOALS: 'away_club_goals'
+    KEY:
+      - GAME
+
+  CLUBS:
+    COLS:
+      CLUB: 'club_id'
+      CLUB_NAME: 'name'
+      CLUB_PRETTY_NAME: 'pretty_name'
+      DOMESTIC_COMPETITION: 'domestic_competition_id'
+      STAIUM_SEATS: 'stadium_seats'
+    KEY:
+      - CLUB
+
+  COMPETITIONS:
+    COLS:
+      COMPETITION: 'competition_id'
+      COMPETITION_NAME: 'name'
+      COMPETITION_TYPE: 'type'
+      COMPETITION_COUNTRY: 'country_id'
+      COMPETITION_COUNTRY_NAME: 'country_name'
+      DOMESTIC_LEAGUE : 'domestic_league_code'
+    KEY:
+      - COMPETITION
+      
+  PLAYER_VALUATIONS:
+    COLS:
+      PLAYER: 'player_id'
+      DATE: 'date'
+      MARKET_VALUE: 'market_value'
+    KEY:
+      - PLAYER
+      - DATE
+
+  INTERNATIONAL_COMPETITIONS_STATS:
+    COLS:
+      NAME: 'display_name'
+      PRETTY_NAME: 'pretty_name'
+      COUNTRY: 'country_of_citizenship'
+      APPEARANCES: 'matches'
+      GOALS: 'goals'
+      ASSIST: 'assists'
+      SEASON: 'year'
+      COMPETITION: 'competition'
+    KEY:
+      - NAME
+      - COMPETITION
+    
